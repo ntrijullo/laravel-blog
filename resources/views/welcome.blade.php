@@ -11,8 +11,8 @@
     <div class="container">
         @foreach ($posts as $post)
             <article>
-                <h1>{{$post['title']}}</h1>
-                <p>{{$post['excerpt']}}</p>
+                <h1>{{$post->title}}</h1>
+                <p>{{$post->excerpt}}</p>
             </article>
         @endforeach
 
