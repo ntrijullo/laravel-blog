@@ -16,3 +16,24 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+//rutas con prefijo
+
+// Route::get('/info/nosotros', function(){
+//     return 'nosotros';
+// });
+
+// Route::get('/info/contacto', function(){
+//     return 'contacto';
+// });
+
+Route::prefix('info')->group(function(){
+
+    Route::get('/nosotros', function(){
+        return 'nosotros';
+    });
+
+    Route::get('/contacto', function(){
+        return 'contacto';
+    });
+});
