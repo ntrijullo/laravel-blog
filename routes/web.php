@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,31 +15,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    $posts = [
-        [
-            'title'=> 'Curso de laravel 9',
-            'excerpt'=> 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-            Nisi vel magni laboriosam. 
-            Accusantium quisquam praesentium asperiores iste dignissimos voluptatum quos. 
-            Provident quisquam incidunt deserunt possimus laudantium quo sunt impedit numquam!'
-        ],
-        [
-            'title'=> 'Novedades de laravel 9',
-            'excerpt'=> 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-            Nisi vel magni laboriosam. 
-            Accusantium quisquam praesentium asperiores iste dignissimos voluptatum quos. 
-            Provident quisquam incidunt deserunt possimus laudantium quo sunt impedit numquam!'
-        ],
-        [
-            'title'=> 'Manejo basico de eloquent',
-            'excerpt'=> 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-            Nisi vel magni laboriosam. 
-            Accusantium quisquam praesentium asperiores iste dignissimos voluptatum quos. 
-            Provident quisquam incidunt deserunt possimus laudantium quo sunt impedit numquam!'
-        ],
-    ];
-    return view('welcome', ['posts' => $posts]);
+// Route::get('/', function () {
+
+//     return view('welcome', ['posts' => $posts]);
+// });
+
+Route::get('/', [HomeController::class, 'show']);
+
+Route::controller(PostsController::class)->group(function(){
+    Route::get('/posts/{id}', 'show');
+    Route::get('/posts/create', 'create');
+    Route::post('/posts', 'store');
+    Route::get('/posts/{id}/edit', 'edit');
+    Route::patch('/posts/{id}', 'update');
+    Route::delete('/posts/{id}', 'destroy');
 });
-
-
