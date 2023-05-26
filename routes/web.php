@@ -14,26 +14,30 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $posts = [
+        [
+            'title'=> 'Curso de laravel 9',
+            'excerpt'=> 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+            Nisi vel magni laboriosam. 
+            Accusantium quisquam praesentium asperiores iste dignissimos voluptatum quos. 
+            Provident quisquam incidunt deserunt possimus laudantium quo sunt impedit numquam!'
+        ],
+        [
+            'title'=> 'Novedades de laravel 9',
+            'excerpt'=> 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+            Nisi vel magni laboriosam. 
+            Accusantium quisquam praesentium asperiores iste dignissimos voluptatum quos. 
+            Provident quisquam incidunt deserunt possimus laudantium quo sunt impedit numquam!'
+        ],
+        [
+            'title'=> 'Manejo basico de eloquent',
+            'excerpt'=> 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
+            Nisi vel magni laboriosam. 
+            Accusantium quisquam praesentium asperiores iste dignissimos voluptatum quos. 
+            Provident quisquam incidunt deserunt possimus laudantium quo sunt impedit numquam!'
+        ],
+    ];
+    return view('welcome', ['posts' => $posts]);
 });
 
-//rutas con prefijo
 
-// Route::get('/info/nosotros', function(){
-//     return 'nosotros';
-// });
-
-// Route::get('/info/contacto', function(){
-//     return 'contacto';
-// });
-
-Route::prefix('info')->group(function(){
-
-    Route::get('/nosotros', function(){
-        return 'nosotros';
-    });
-
-    Route::get('/contacto', function(){
-        return 'contacto';
-    });
-});
