@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Comment;
 use App\Models\Post;
+use Illuminate\Http\Request;
 
-class PostsController extends Controller
+class CommentsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,7 +25,7 @@ class PostsController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        //
     }
 
     /**
@@ -33,10 +34,12 @@ class PostsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Post $post,Request $request)
+    public function store(Comment $comment, Request $request)
     {
-        $post->create($request->all());
-        return redirect('/');
+        $comment->create($request->all());
+        $post = Post::find($request->post_id);
+        $comments = $post->comments;
+        return view('posts.show')->with(['post'=>$post, 'comments' => $comments]);
     }
 
     /**
@@ -45,10 +48,9 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show($id)
     {
-        $comments = $post->comments;
-        return view('posts.show')->with(['post'=>$post, 'comments' => $comments]);
+        //
     }
 
     /**
@@ -57,9 +59,9 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit($id)
     {
-        return view('posts.edit')->with(['post'=>$post]);
+        //
     }
 
     /**
@@ -69,10 +71,9 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, $id)
     {
-        $post->update($request->all());
-        return redirect('/');
+        //
     }
 
     /**
@@ -81,9 +82,8 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy($id)
     {
-        $post->delete();
-        return redirect('/');
+        //
     }
 }
