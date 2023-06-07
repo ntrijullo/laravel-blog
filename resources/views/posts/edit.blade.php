@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Editar Post</title>
-    <link rel="stylesheet" href="/css/styles.css">
+    @vite(['resources/js/app.js'])
 </head>
 <body>
     <form action="/posts/{{$post->id}}" method="POST" class="form-post">

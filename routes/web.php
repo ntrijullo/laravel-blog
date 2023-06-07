@@ -33,3 +33,6 @@ Route::controller(PostsController::class)->group(function(){
 });
 
 Route::post('/comments', [CommentsController::class, 'store']);
+// Auth::routes();
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
